@@ -1,6 +1,8 @@
 package com.smy.todoList;
 
 import com.smy.todoList.datamodel.TodoItem;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -39,18 +41,29 @@ public class Controller {
         listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         detailView.editableProperty().setValue(false);
 
-        listView.getSelectionModel().selectFirst();
-        if (listView.getSelectionModel().isSelected(0))
-            detailView.setText(listView.getItems().get(0).getShortDescription());
+        listView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TodoItem>() {
+            @Override
+            public void changed(ObservableValue<? extends TodoItem> observable, TodoItem oldValue, TodoItem newValue) {
+                if (newValue != null) {
+                    TodoItem item = listView.getSelectionModel().getSelectedItem();
+                    detailView.setText(item.getLongDescription());
+                    dueDate.setText(item.getDueDate().toString());
 
-    }
+                }
+            }
+        });
+
+        listView.getSelectionModel().selectFirst();
+
+        }
+
 
 
     @FXML
     public void handleClickListView() {
 
         TodoItem item = listView.getSelectionModel().getSelectedItem();
-        
+
         detailView.setText(item.getLongDescription());
         dueDate.setText(item.getDueDate().toString());
 
