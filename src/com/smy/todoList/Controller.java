@@ -50,11 +50,7 @@ public class Controller {
     public void handleClickListView() {
 
         TodoItem item = listView.getSelectionModel().getSelectedItem();
-
-
-
-
-
+        
         detailView.setText(item.getLongDescription());
         dueDate.setText(item.getDueDate().toString());
 
