@@ -2,6 +2,7 @@ package com.smy.todoList;
 
 import com.smy.todoList.datamodel.TodoItem;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
@@ -18,6 +19,10 @@ public class Controller {
     @FXML
     private TextArea detailView;
 
+    @FXML
+    private Label dueDate;
+
+
     public void initialize() {
 
         List<TodoItem> todoList = new ArrayList<>();
@@ -32,10 +37,11 @@ public class Controller {
         listView.getItems().setAll(todoList);
 
         listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-
         detailView.editableProperty().setValue(false);
 
-
+        listView.getSelectionModel().selectFirst();
+        if (listView.getSelectionModel().isSelected(0))
+            detailView.setText(listView.getItems().get(0).getShortDescription());
 
     }
 
@@ -45,7 +51,12 @@ public class Controller {
 
         TodoItem item = listView.getSelectionModel().getSelectedItem();
 
-        detailView.setText(item.getLongDescription() + "\n\n\n\n" + item.getDueDate().toString());
+
+
+
+
+        detailView.setText(item.getLongDescription());
+        dueDate.setText(item.getDueDate().toString());
 
     }
 

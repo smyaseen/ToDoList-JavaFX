@@ -4,6 +4,10 @@
 
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Font?>
 <BorderPane fx:controller="com.smy.todoList.Controller"
             xmlns:fx="http://javafx.com/fxml">
 
@@ -11,6 +15,24 @@
         <ListView fx:id="listView" onMouseClicked="#handleClickListView" ></ListView>
     </left>
     <center>
-        <TextArea fx:id="detailView" />
+        <VBox style="-fx-background-color:white">
+            <TextArea fx:id="detailView" VBox.vgrow="ALWAYS" >
+                <font>
+                    <Font name="Times new Roman bold" size="15" />
+                </font>
+            </TextArea>
+            <HBox>
+                <Label text="Due Date: " >
+                    <font>
+                        <Font name="Times New Roman bold" size="20" />
+                    </font>
+                </Label>
+                <Label fx:id="dueDate"  textFill="red">
+                    <font>
+                        <Font name="Times New Roman bold" size="20"  />
+                    </font>
+                </Label>
+            </HBox>
+        </VBox>
     </center>
 </BorderPane>
