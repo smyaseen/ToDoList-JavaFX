@@ -13,11 +13,6 @@ public class TodoItem {
         this.longDescription = longDescription;
         this.dueDate = dueDate;
     }
-//
-//    @Override
-//    public String toString() {
-//        return shortDescription;
-//    }
 
     public String getShortDescription() {
         return shortDescription;

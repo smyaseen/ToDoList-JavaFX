@@ -33,5 +33,15 @@ public class DialogController {
 
     }
 
+    public void preEditItem(TodoItem item) {
+
+        shortDescription.setText(item.getShortDescription());
+        details.setText(item.getLongDescription());
+        date.setValue(item.getDueDate());
+
+    }
+
+
+
 
 }
